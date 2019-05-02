@@ -1,0 +1,46 @@
+#工程名称
+spring:
+  application:
+    name: cloud-demo
+  #选择哪一个环境的配置
+  #这里可以在每个环境配置redis，数据库（mysql），消息（kafka）等相关的组件的配置
+  profiles:
+    active: dev
+#配置eureka获取服务地址，这里使用的是程序员DD公开的eureka注册中心，感谢程序员DD提供的注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka.didispace.com/eureka/
+
+#文档块区分为三个---
+---
+server:
+  port: 8081
+spring:
+  profiles: dev
+#日志
+logging:
+  config: classpath:log/logback.xml
+  path: log/cloud-demo
+
+#文档块区分为三个---
+---
+server:
+  port: 8082
+spring:
+  profiles: test
+#日志
+logging:
+  config: classpath:log/logback.xml
+  path: usr/cloud-demo/log/cloud-demo
+
+#文档块区分为三个---
+---
+server:
+  port: 8083
+spring:
+  profiles: prod
+#日志
+logging:
+  config: classpath:log/logback.xml
+  path: usr/cloud-demo/log/cloud-demo
